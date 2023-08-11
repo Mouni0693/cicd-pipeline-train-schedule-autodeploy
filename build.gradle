@@ -10,7 +10,7 @@ node {
 }
 
 //declare a build task
-task build
+//task build
 
 //declare a task to create a zip of the app
 task zip(type: Zip) {
@@ -23,12 +23,12 @@ task zip(type: Zip) {
 		include "routes/**"
 		include "views/**"
 	}
-	destinationDir(file("dist"))
-	baseName "trainSchedule"
+	//destinationDir(file("dist"))
+	//baseName "trainSchedule"
 }
 
 //declare task dependencies
-build.dependsOn zip
+//build.dependsOn zip
 zip.dependsOn npm_build
 npm_build.dependsOn npm_test
 npm_test.dependsOn npmInstall
