@@ -28,7 +28,7 @@ task zip(type: Zip) {
 		include "routes/**"
 		include "views/**"
 	}
-	destinationDir("/var/lib/jenkins/workspace/Dockerbuild/dist")
+	destinationDir(file("dist"))
 	baseName "trainSchedule"
 
 }
