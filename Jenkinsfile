@@ -3,6 +3,8 @@ pipeline {
     environment {
         //be sure to replace "bhavukm" with your own Docker Hub username
         DOCKER_IMAGE_NAME = "balacse530/train-schedule"
+		DOCKERHUB_CREDENTIALS = credentials('Balacse530')
+  
     }
     stages {
         stage('Build') {
@@ -25,6 +27,11 @@ pipeline {
                 }
             }
         }
+		stage('Login') {
+		  steps {
+			sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+		  }
+		}
         stage('Push Docker Image') {
             
             steps {
