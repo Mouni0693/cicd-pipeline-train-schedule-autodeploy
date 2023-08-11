@@ -10,7 +10,7 @@ node {
 }
 
 task createDistDirectory(type: Exec) {
-    commandLine 'mkdir','-p' 'dist'
+    commandLine 'mkdir', '-p dist'
 }
 
 task build(dependsOn: ['npm_install', 'createDistDirectory']) {
