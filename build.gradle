@@ -3,6 +3,7 @@ plugins {
   id "com.moowork.node" version "1.2.0"
   id 'distribution'
   id 'java'
+  id 'maven'
 }
 
 node {
@@ -37,7 +38,7 @@ task zip(type: Zip) {
 	//destinationDir("dist")
 	distDir.set(file("dist"))
 	//destinationDir = file('dist')
-	baseName "trainSchedule"
+	archivesBaseName= "trainSchedule"
 
 }
 
