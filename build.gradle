@@ -9,6 +9,14 @@ node {
 	npmVersion = "5.6.0"
 }
 
+task createDistDirectory(type: Exec) {
+    commandLine 'mkdir','-p' 'dist'
+}
+
+task build(dependsOn: ['npm_install', 'createDistDirectory']) {
+    // Configure your build task as needed
+}
+
 //declare a task to create a zip of the app
 task zip(type: Zip) {
 	from ('.') {
@@ -26,7 +34,7 @@ task zip(type: Zip) {
 }
 
 //declare task dependencies
-//build.dependsOn zip
+build.dependsOn zip
 zip.dependsOn npm_build
 npm_build.dependsOn npm_test
 npm_test.dependsOn npmInstall
