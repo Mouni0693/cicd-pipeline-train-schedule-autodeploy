@@ -10,13 +10,13 @@ node {
 	npmVersion = "5.6.0"
 }
 
-task createDistDirectory(type: Exec) {
-    commandLine 'mkdir', '-p dist'
-}
+//task createDistDirectory(type: Exec) {
+  //  commandLine 'mkdir', '-p dist'
+//}
 
-task build(dependsOn: ['npm_install', 'createDistDirectory']) {
+//task build(dependsOn: ['npm_install', 'createDistDirectory']) {
     // Configure your build task as needed
-}
+//}
 
 //declare a task to create a zip of the app
 task zip(type: Zip) {
