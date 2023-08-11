@@ -10,9 +10,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Running build automation'
-				 //sh 'npm install' // Assuming npm_install is part of your pipeline
-                 //sh 'mkdir dist'
-                 sh './gradlew build --no-daemon'
+                sh './gradlew build --no-daemon'
                 //archiveArtifacts artifacts: 'dist/*.*'
             }
         }
@@ -29,17 +27,17 @@ pipeline {
         }
 		stage('Login') {
 		  steps {
-			sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+		   sh 'docker login -u balacse530 -p dckr_pat_vUlIRdWsxJRK0N_BYYBOebVAZ9Y'
 		  }
 		}
         stage('Push Docker Image') {
             
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'Balacse530') {
+                    //docker.withRegistry('https://registry.hub.docker.com', 'Balacse530') {
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
-                    }
+                    //}
                 }
             }
         }
