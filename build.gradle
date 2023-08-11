@@ -39,7 +39,6 @@ task zip(type: Zip) {
 	distDir.set(file("dist"))
 	//destinationDir = file('dist')
 	archivesBaseName= "trainSchedule"
-	echo "zip created"
 
 }
 
