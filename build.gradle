@@ -10,9 +10,19 @@ node {
 }
 
 //declare a build task
-task build{
-	sh 'mkdir  dist'
+//task build{
+	//sh 'mkdir  dist'
+//}
+
+//to remove gradle error
+task createDistDirectory(type: Exec) {
+    commandLine 'mkdir', 'dist'
 }
+
+task build(dependsOn: ['npm_install', 'createDistDirectory']) {
+    // Configure your build task as needed
+
+
 
 //declare a task to create a zip of the app
 task zip(type: Zip) {
@@ -27,6 +37,7 @@ task zip(type: Zip) {
 	}
 	destinationDir(file("dist"))
 	baseName "trainSchedule"
+}
 }
 
 //declare task dependencies
