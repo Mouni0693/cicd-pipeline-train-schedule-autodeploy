@@ -59,7 +59,7 @@ pipeline {
             environment { 
                 CANARY_REPLICAS = 0
             }
-            steps {
+           // steps {
                 input 'Deploy to Production?'
                 milestone(1)
                 kubernetesDeploy(
@@ -72,6 +72,11 @@ pipeline {
                     configs: 'train-schedule-kube.yml',
                     enableConfigSubstitution: true
                 )
+            }//
+			steps {
+             script {
+               kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
+              }
             }
         }
     }
