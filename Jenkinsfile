@@ -60,9 +60,18 @@ pipeline {
                 CANARY_REPLICAS = 0
             }
             steps {
-                script {
-                kubernetesDeploy(configs: "train-schedule-kube-canary.yml", "train-schedule-kube.yaml")
-               }
+                input 'Deploy to Production?'
+                milestone(1)
+                kubernetesDeploy(
+                    kubeconfigId: 'kubeconfig',
+                    configs: 'train-schedule-kube-canary.yml',
+                    enableConfigSubstitution: true
+                )
+                kubernetesDeploy(
+                    kubeconfigId: 'kubeconfig',
+                    configs: 'train-schedule-kube.yml',
+                    enableConfigSubstitution: true
+                )
             }
         }
     }
